@@ -1,7 +1,7 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { BuilderComponent, builder, useIsPreviewing } from "@builder.io/react";
+import { BuilderComponent, builder, Builder } from "@builder.io/react";
 
 builder.init("0a89e12b402f4021bc5be6ff54f0471a");
 
@@ -28,9 +28,8 @@ export const loader: LoaderFunction = async () => {
 
 export default function Index() {
   const { page } = useLoaderData();
-  const isPreviewing = useIsPreviewing();
 
-  if (!page && !isPreviewing) {
+  if (!page && !Builder.isPreviewing) {
     return (
       <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
         <h1>404 No Page Found.</h1>
